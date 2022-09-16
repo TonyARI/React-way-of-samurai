@@ -2,6 +2,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import styles from './users.module.css';
+import {UserAPI} from '../components/API/api'
 
 let Users=(props)=>{
     let pageCount=Math.ceil(props.totalUsersCount/props.pageSize);
@@ -25,34 +26,9 @@ let Users=(props)=>{
                     <div>
                         {u.followed? 
                         <button disabled={props.toggleFollowingInProgress.some(id=>id===u.id)} onClick={()=>
-                            {   props.toggleFollowingButton(true, u.id)
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-                                withCredentials: true,
-                                headers: {
-                                    'API-KEY': "9be5ee11-4431-4cf6-8a54-f8e6aac1195e"
-                                }
-                            }).then(response=>{
-                                if(response.data.resultCode===0) {
-                                    props.unfollow(u.id)
-                                    }
-                                    props.toggleFollowingButton(false, u.id)
-                                })
-                            }
-                    }>Unfollow</button>
+                            {props.unfollow(u.id)} }>Unfollow</button>
                         : <button disabled={props.toggleFollowingInProgress.some(id=>id===u.id)} onClick={()=>
-                            {   props.toggleFollowingButton(true, u.id)
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
-                                withCredentials: true,
-                                headers: {
-                                    'API-KEY': "9be5ee11-4431-4cf6-8a54-f8e6aac1195e"
-                                }
-                            }).then(response=>{
-                                if(response.data.resultCode===0) {
-                                     props.follow(u.id) 
-                                }
-                                props.toggleFollowingButton(false, u.id)
-                            })
-                            }}>Follow</button>}
+                            { props.follow(u.id)}}>Follow</button>}
                     </div>
                 </span>
                 <span>

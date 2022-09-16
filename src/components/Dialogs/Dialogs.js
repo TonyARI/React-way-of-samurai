@@ -3,6 +3,7 @@ import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 import React from 'react';
 import { sendMessageActionCreator, updateNewMessageText } from '../../Redux/Message-reducer';
+import { Navigate } from 'react-router-dom';
 
 
 function Dialogs(props) {
@@ -26,7 +27,7 @@ function Dialogs(props) {
         let message=newMessage.current.value;
         props.updateNewMessageText(message);
     }
-
+    
     return(
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>

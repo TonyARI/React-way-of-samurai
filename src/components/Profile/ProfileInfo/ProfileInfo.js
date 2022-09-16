@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import Preloader from '../../Common/Prealoader';
 import classes from './ProfileInfo.module.css';
 

@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import { follow, setPage, setUsers, setUsersTotalCount, toggleisFetching, unfollow, toggleFollowingButton, getUsersThunk } from "../Redux/Users-reducer";
+import { follow, setPage, setUsers, setUsersTotalCount, toggleisFetching, unfollow, toggleFollowingButton, getUsersThunk, followThunk, unfollowThunk } from "../Redux/Users-reducer";
 import * as axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import Preloader from "../components/Common/Prealoader";
-import { getUsers } from "../components/API/api";
+
 
 
 class UsersApi extends React.Component {
@@ -26,10 +26,10 @@ class UsersApi extends React.Component {
                     pageSize={this.props.pageSize}
                     users={this.props.users}
                     pageChange={this.pageChange}
-                    unfollow={this.props.unfollow}
-                    follow={this.props.follow}
                     toggleFollowingButton={this.props.toggleFollowingButton}
-                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}/>
+                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                    follow={this.props.followThunk}
+                    unfollow={this.props.unfollowThunk}/>
                     
       </>
       
@@ -69,4 +69,4 @@ let mapStateToProps=(state)=>{
     }
 } */
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setPage, setUsersTotalCount, toggleisFetching, toggleFollowingButton, getUsersThunk })(UsersApi);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setPage, setUsersTotalCount, toggleisFetching, toggleFollowingButton, getUsersThunk, followThunk, unfollowThunk })(UsersApi);
