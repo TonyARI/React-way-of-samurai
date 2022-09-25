@@ -26,6 +26,18 @@ export const UserAPI={
 export const Auth={
     me() {
         return instance.get(`auth/me`).then(response=>response.data)
+    },
+    authMe(email, password, rememberMe) {
+        return instance.post(`auth/login`, {email: email, password: password, rememberMe: rememberMe}).then(response=>response.data)
+    }
+}
+
+export const Profile={
+    getStatus(id) {
+        return instance.get(`profile/status/${id}`).then(response=>response.data);
+    },
+    setMyStatus(status) {
+        return instance.put(`profile/status`, {status: status}).then(response=>response.data)
     }
 }
 

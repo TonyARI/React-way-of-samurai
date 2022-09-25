@@ -1,5 +1,4 @@
 import './App.css';
-import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
@@ -20,7 +19,6 @@ function App(props) {
     <BrowserRouter>
       <div className="app-wraper">
           <HeaderContainer/>
-          <Nav />
         <div className='app-wraper-content'>
          <Routes>
              <Route path="/dialogs/*" element={<DialogsContainer/>}/> 

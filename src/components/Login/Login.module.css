@@ -1,0 +1,10 @@
+.form {
+    position: relative;
+}
+.error {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 12px;
+    color: red;
+}

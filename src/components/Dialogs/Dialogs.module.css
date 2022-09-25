@@ -8,12 +8,14 @@
 .dialogsItems .active {
   color: gold;
 }
-.dialog {
 
+.input_message {
+  width: 90%;
+  height: 120px;
+  outline: none;
+  border: 1px solid #2D3D49;
+  resize: none;
+  margin-top: 10px;
 }
-.messages {
 
-}
-.message {
 
-}

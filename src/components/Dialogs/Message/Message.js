@@ -1,7 +1,7 @@
-import classes from '../Dialogs.module.css';
+import s from '../Dialogs.module.css';
 
 function Message(props) {
-    return <div className={classes.message}>{props.message}</div>
+    return <div className="item">{props.message}</div>
 }
 
 

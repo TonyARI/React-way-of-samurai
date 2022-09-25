@@ -1,10 +1,21 @@
 .header {
-    grid-area: h;
-    background-color: green;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.7;
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    align-items: center;
   }
   .header img {
-    width: 40px;
+    width: 70px;
+    height: 70px;
   }
   .login {
       float: right;
+  }
+  .right_content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }

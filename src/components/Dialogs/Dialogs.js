@@ -1,9 +1,8 @@
-import classes from './Dialogs.module.css';
+import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 import React from 'react';
-import { sendMessageActionCreator, updateNewMessageText } from '../../Redux/Message-reducer';
-import { Navigate } from 'react-router-dom';
+import { Formik } from 'formik';
 
 
 function Dialogs(props) {
@@ -18,24 +17,48 @@ function Dialogs(props) {
         return <Message key={item.id} message={item.message}/>
     })
 
-    let newMessage=React.createRef();
-    let sendMessage=()=>{
-        props.sendMessage();
+    let sendMessage=(message)=>{
+        props.sendMessage(message);
     }
     
-    let onMessageChange=()=>{
-        let message=newMessage.current.value;
-        props.updateNewMessageText(message);
+    let MessageForm=()=>{
+        return (
+            <div className={s.messages}>
+                <Formik
+                    initialValues={{
+                        value: ""
+                    }}
+                    onSubmit={(values)=>sendMessage(values.value)}
+                >
+                    {({values, handleChange, handleSubmit })=>{
+                        return <div>
+                                    <textarea
+                                         onChange={handleChange}
+                                         name="value" 
+                                         cols="30"
+                                         rows="3"
+                                         placeholder="Input your message"
+                                         value={values.value}
+                                         className={s.input_message}/><br/>
+                                    <button 
+                                        onClick={handleSubmit}
+                                        disabled={!values.value}
+                                        type="submit"
+                                        className={!values.value?"btn disabled": "btn"}
+                                        >Send</button>
+                               </div>
+                    }}
+                </Formik>
+            </div>
+        )
     }
-    
     return(
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
+        <div className={s.dialogs+" section"}>
+            <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={classes.messages}>
-                <textarea onChange={onMessageChange} name="" id="" cols="30" ref={newMessage} rows="3" placeholder="Input your message" value={state.newMessage}/><br/>
-                <button onClick={sendMessage}>Send</button>
+            <div className={s.messages}>
+                <MessageForm/>
                 {messagesElements}
             </div> 
         </div>

@@ -34,4 +34,12 @@ export const authMeThunk=()=>{
         })
     }
 }
+
+export const authMeHereThunk=(email, password, rememberMe)=>{
+   return (dispatch)=>{
+       Auth.authMe(email, password, rememberMe).then(data=>{
+        
+   })
+}
+}
 export default authReducer;

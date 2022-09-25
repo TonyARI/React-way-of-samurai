@@ -5,3 +5,8 @@
 .activePage {
     font-weight: bold;
 }
+
+.Page {
+  margin-left: 3px;
+  cursor: pointer;
+}

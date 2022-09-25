@@ -1,30 +1,25 @@
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import Friends from '../../Friends/Friends';
-import classes from './Nav.module.css';
+import s from './Nav.module.css';
+import {faIdCard} from '@fortawesome/free-regular-svg-icons';
+import {faUser} from '@fortawesome/free-regular-svg-icons';
+import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
+
+
 
 function Nav(props) {
+   
     return(
-        <nav className={classes.nav}>
-            <div className={classes.item}>
-                <NavLink to='/profile' className={navData=>navData.isActive?classes.active:classes.item}>Profile</NavLink>
+        <nav className={s.nav}>
+            <div className={s.item}>
+                <NavLink to='/profile' className={navData=>navData.isActive?s.links+" "+s.active:s.links}><FontAwesomeIcon icon={faIdCard} className={s.icon}/>Profile</NavLink>
             </div>
-            <div className={classes.item}  >
-                <NavLink to='/dialogs' className={navData=>navData.isActive?classes.active:classes.item}>Messages</NavLink>
+            <div className={s.item}  >
+                <NavLink to='/dialogs' className={navData=>navData.isActive?s.links+" "+s.active:s.links}><FontAwesomeIcon icon={faEnvelope} className={s.icon}/>Messages</NavLink>
             </div>
-            <div className={classes.item}  >
-                <NavLink to='/users' className={navData=>navData.isActive?classes.active:classes.item}>Users</NavLink>
+            <div className={s.item}  >
+                <NavLink to='/users' className={navData=>navData.isActive?s.links+" "+s.active:s.links}><FontAwesomeIcon icon={faUser} className={s.icon}/>Users</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/news' className={navData=>navData.isActive?classes.active:classes.item}>News</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/music' className={navData=>navData.isActive?classes.active:classes.item}>Music</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/settings' className={navData=>navData.isActive?classes.active:classes.item}>Settings</NavLink>
-            </div>
-          {/* {   <Friends friends={props.state}/>   } */}
       </nav>
     )
 }
