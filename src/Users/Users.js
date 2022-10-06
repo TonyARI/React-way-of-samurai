@@ -1,18 +1,34 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './users.module.css';
 
 let Users=(props)=>{
     let pageCount=Math.ceil(props.totalUsersCount/props.pageSize);
     let pages=[];
-    for(let i=1; i<=11; i++) {
+    for(let i=1; i<=pageCount; i++) {
         pages.push(i);
     }
+
+    let [number, setNumber]=useState(0);
+    let rightBorder=number+10;
+    let leftBorder=number+1
+    let nextPage=()=>{
+        setNumber(number+=10);
+    }
+    let prevPage=()=>{
+        setNumber(number-=10)
+    }
+
     return(
         <div>
+            {leftBorder>1&&<button style={{padding: "4px"}} className='btn' onClick={prevPage}>Prev</button>}
         {pages.map(thisPage=>{
-            return <span onClick={(e)=>props.pageChange(thisPage)} className={thisPage===props.currentPage ?s.Page+" "+s.activePage:s.Page}>{thisPage}</span>
+            if(thisPage<=rightBorder&&thisPage>=leftBorder){
+                return <span onClick={(e)=>props.pageChange(thisPage)} className={thisPage===props.currentPage ?s.Page+" "+s.activePage:s.Page}>{thisPage}</span>
+            }
         })}
-        {
+        {number+10<pages.length&&<button  style={{padding: "4px"}} className='btn' onClick={nextPage}>Next</button>}
+        {       
                 props.users.map(u=><div className="item" key={u.id}>
                 <div>
                     <div>

@@ -2,11 +2,13 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+
 
 
 
 function MyPosts(props) {
+    console.log("Render")
+    console.log(props)
    
     let postsElements=props.postsData.map((post)=>{
         return <Post message={post.message} likesCount={post.likesCount} />

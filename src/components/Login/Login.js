@@ -1,11 +1,17 @@
 import { Formik } from "formik";
+import { connect } from 'react-redux';
 import React from "react";
 import { authMeHereThunk } from "../../Redux/Auth-reducer";
 import * as Yup from 'yup';
 import s from "./Login.module.css"
+import { Navigate } from "react-router-dom";
 
 
-function Login() {
+
+function Login(props) {
+    if(props.isAuth) {
+        return <Navigate to="/profile"/>
+    }
     const validationShema=Yup.object().shape({
         login: Yup.string().typeError().required("This field is required"),
         password: Yup.string().typeError().required("This field is required")
@@ -20,10 +26,10 @@ function Login() {
                     rememberMe: false
                 }}
                 validateOnBlur
-                onSubmit={(values)=>authMeHereThunk(values.login, values.password, values.rememberMe)()}
+                onSubmit={(values, {setSubmitting, setStatus})=>{props.authMeHereThunk(values.login, values.password, values.rememberMe, setStatus); setSubmitting(false)}}
                 validationSchema={validationShema}
             >
-                {({values, handleChange, touched, errors, handleBlur, handleSubmit})=>{
+                {({values, handleChange, touched, errors, handleBlur, handleSubmit, status})=>{
                     return <div>
                         <p className={s.form}>
                             <input
@@ -56,6 +62,7 @@ function Login() {
                                 onChange={handleChange}
                                 value={values.rememberMe}
                             /> remember me
+                              <div className={s.errorMessage}>{status}</div>
                         </p>
                         <p>
                             <button
@@ -75,4 +82,10 @@ function Login() {
     )
 }
 
-export default Login;
+let mapStateToProps=(state)=>{
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+ 
+export default connect(mapStateToProps, { authMeHereThunk })(Login)

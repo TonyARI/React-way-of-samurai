@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import Preloader from '../../Common/Prealoader';
 import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHoc from './ProfileStatusWithHoc';
 
 function ProfileInfo(props) {
     if(!props.profile) {
@@ -22,7 +23,7 @@ function ProfileInfo(props) {
                   <div className={s.about}>
                     {props.profile.aboutMe}
                   </div>
-                <ProfileStatus className={s.status} status={props.status} updateStatus={props.updateStatusThunk}/>
+                <ProfileStatusWithHoc className={s.status} status={props.status} updateStatus={props.updateStatusThunk}/>
               </div>
             </div>
             <div className={s.about_user}>

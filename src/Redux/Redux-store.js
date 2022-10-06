@@ -5,13 +5,15 @@ import sidebarReducer from './Sidebar-reducer';
 import usersReducer from "./Users-reducer";
 import authReducer from "./Auth-reducer";
 import thunk from 'redux-thunk';
+import initilizedReducer from "./initialized-reducer";
 
 let reducers=combineReducers({
     profilePage: profileReducer, 
     messagesPage: messageReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    initialized: initilizedReducer
 });
 
 let store=createStore(reducers, applyMiddleware(thunk));

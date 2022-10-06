@@ -13,7 +13,7 @@ let initialState={
     status: ""
 }
 
-const profileReducer=(state=initialState, action)=>{
+export const profileReducer=(state=initialState, action)=>{
     switch(action.type) {
         case ADD_POST: {
             let newPost={
@@ -60,38 +60,26 @@ export let setProfile=(profile)=>({
     profile
 })
 
-export let getProfileThunk=(id)=>{
-    return (dispatch)=> {
-        UserAPI.setProfile(id).then(data=>{
-            dispatch(setProfile(data))
-        })
-    }
-}
-
 const setStatus=(status)=>({
     type: SET_STATUS,
     status
 })
 
-
-
-export let setStatusThunk=(id)=>{
-    return(dispatch)=>{
-        Profile.getStatus(id).then(data=>{
-            dispatch(setStatus(data))
-        })
-    }
+export let getProfileThunk=(id)=>async (dispatch)=>{
+    let response= await UserAPI.setProfile(id);
+    dispatch(setProfile(response))
 }
 
-export let updateStatusThunk=(status)=>{
-    return (dispatch)=>{
-        Profile.setMyStatus(status).then(data=>{
-            if(data.resultCode===0) {
-                dispatch(setStatus(status));
-            }
-        })
-    }
+export let setStatusThunk=(id)=>async (dispatch)=>{
+    let response= await Profile.getStatus(id);
+    dispatch(setStatus(response));
 }
 
+export let updateStatusThunk=(status)=>async (dispatch)=>{
+    let response=await Profile.setMyStatus(status);
+    if(response.resultCode===0) {
+        dispatch(setStatus(status));
+    }
+}
 
 export default profileReducer;

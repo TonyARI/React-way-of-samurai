@@ -4,6 +4,7 @@ import * as axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import Preloader from "../components/Common/Prealoader";
+import { getcurrentPage, getisFetching, getpageSize, gettoggleFollowingInProgress, gettotalUsersCount, getUsersSuper } from "../Redux/usersReselect";
 
 
 
@@ -38,12 +39,12 @@ class UsersApi extends React.Component {
 
 let mapStateToProps=(state)=>{
     return{
-        users: state.usersPage.users,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        toggleFollowingInProgress: state.usersPage.toggleFollowingInProgress
+        users: getUsersSuper(state),
+        totalUsersCount: gettotalUsersCount(state),
+        pageSize: getpageSize(state),
+        currentPage: getcurrentPage(state),
+        isFetching: getisFetching(state),
+        toggleFollowingInProgress: gettoggleFollowingInProgress(state)
     }
 }
 /* let mapDispatchToProps=(dispatch)=>{
