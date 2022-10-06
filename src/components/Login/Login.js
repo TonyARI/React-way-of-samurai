@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { connect } from 'react-redux';
 import React from "react";
-import { authMeHereThunk } from "../../Redux/Auth-reducer";
+import { authMeHereThunk, noAuthorized } from "../../Redux/Auth-reducer";
 import * as Yup from 'yup';
 import s from "./Login.module.css"
 import { Navigate } from "react-router-dom";
@@ -73,10 +73,14 @@ function Login(props) {
                             >
                                 Log in
                             </button>
+                            <button
+                                 className="btn"
+                                 onClick={()=>props.noAuthorized()}
+                                 style={{marginLeft: "15px"}}
+                             >Continue</button>
                         </p>
                     </div>
                 }}
-
             </Formik>
         </div>
     )
@@ -88,4 +92,4 @@ let mapStateToProps=(state)=>{
     }
 }
  
-export default connect(mapStateToProps, { authMeHereThunk })(Login)
+export default connect(mapStateToProps, { authMeHereThunk, noAuthorized })(Login)

@@ -1,5 +1,6 @@
 import { Auth } from "../components/API/api";
 const AUTH_REDUCER="SAMURAI-NETWORK/AUTH_REDUCER";
+const N0_AUTHORIZED="N0_AUTHORIZED";
 
 let initialState={
     id: null,
@@ -16,6 +17,12 @@ let authReducer=(state=initialState, action)=>{
                 ...action.data
             }
         }
+        case N0_AUTHORIZED: {
+            return {
+                ...state,
+                isAuth: true
+            }
+        }
         default: {
             return  state;
         }
@@ -23,6 +30,11 @@ let authReducer=(state=initialState, action)=>{
 }
 
 export const authMe=(id, login, email, isAuth)=>({type:AUTH_REDUCER, data: {id, email, login, isAuth}});
+export const noAuthorized=()=>(dispatch)=>{
+    dispatch({type: N0_AUTHORIZED })
+    console.log("tt")
+}
+
 
 export const authMeThunk=()=>async(dispatch)=>{
     let response=await Auth.me();
