@@ -1,7 +1,7 @@
 import './App.css';
 import { Provider } from 'react-redux';
 import Profile from './components/Profile/Profile';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -23,7 +23,7 @@ class App extends React.Component {
         return <Preloader/> 
     }
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="app-wraper">
             <HeaderContainer/>
           <div className='app-wraper-content'>
@@ -36,7 +36,7 @@ class App extends React.Component {
             </Routes> 
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
