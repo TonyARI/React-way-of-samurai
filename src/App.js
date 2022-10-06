@@ -1,7 +1,7 @@
 import './App.css';
 import { Provider } from 'react-redux';
 import Profile from './components/Profile/Profile';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
